@@ -1,0 +1,67 @@
+@import "tailwindcss";
+
+/* Make dark: work with the .dark class */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* * {
+  margin: 0;
+  padding: 0;
+  border: 1px solid red;
+} */
+
+/* this inline is the connection between tailwind css and normal css since
+tailwind css bg-background doesn't know about the --background variable of the normal css,
+so, we need to define the --background variable in the inline theme */
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-text: var(--text-color);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-border: var(--border);
+  --color-hover: var(--hover);
+
+  /* Button colors */
+  --color-button-background: var(--button-background);
+  --color-button-text: var(--button-text);
+}
+
+/* LIGHT THEME */
+:root {
+  --background: #ffffff;
+  --foreground: #000000;
+  --text-color: #000000;
+
+  --button-background: #000000;
+  --button-text: #ffffff;
+
+  --hover: #f3f4f6;
+  --hover-foreground: black;
+  --card: #ffffff;
+  --card-foreground: #000000;
+  --border: #e5e7eb;
+}
+
+/* DARK THEME */
+.dark {
+  --background: #0f172a;
+  --foreground: #ffffff;
+  --text-color: #ffffff;
+
+  --button-background: #ffffff;
+  --button-text: #000000;
+
+  --hover: rgb(197, 197, 197);
+  --hover-foreground: black;
+  --card: #1e293b;
+  --card-foreground: #ffffff;
+  --border-foreground: #ffffff;
+  --border: #334155;
+}
+
+/* Global page colors */
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+}
