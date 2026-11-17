@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/card";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Icons } from "@/components/icons";
+import { formatPrice } from "@/lib/utils";
 
 // npx shadcn@latest add aspect-ratio
 interface ProductProps {
@@ -37,10 +38,10 @@ function ProductCard({ product }: ProductProps) {
             {product.name}
           </CardTitle>
           <CardDescription className="line-clamp-1 text-sm">
-            {product.price}
+            {formatPrice(product.price)}
             {product.discount > 0 && (
               <span className="ml-2 font-extralight line-through">
-                {product.discount}
+                {formatPrice(product.discount)}
               </span>
             )}
           </CardDescription>
