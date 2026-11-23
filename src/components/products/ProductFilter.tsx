@@ -32,8 +32,10 @@ import type { Category } from "@/types";
 // This describes an object containing two properties:
 // categories and types, both of which are arrays of Category objects.
 interface FilterProps {
-  categories: Category[];
-  types: Category[];
+  filterList: {
+    categories: Category[];
+    types: Category[];
+  };
 }
 
 //! filterList tells the component what choices it can display.
@@ -42,14 +44,14 @@ interface FilterProps {
 // This is particularly important because it describes what information the ProductFilter component receives from its parent.
 // The component expects a property called filterList,
 //  which is an object containing two arrays of Category objects: categories and types.
-interface ProductFilterProps {
-  filterList: FilterProps;
-  // selectedCategory and selectedType are arrays of strings that represent the currently selected categories and types in the filter.
-  selectedCategory: string[];
-  selectedType: string[];
-  // onFilterChange is a function that is called when the user submits the filter form.
-  onFilterChange: (category: string[], type: string[]) => void;
-}
+// interface ProductFilterProps {
+//   filterList: FilterProps;
+//   // selectedCategory and selectedType are arrays of strings that represent the currently selected categories and types in the filter.
+//   selectedCategory: string[];
+//   selectedType: string[];
+//   // onFilterChange is a function that is called when the user submits the filter form.
+//   onFilterChange: (category: string[], type: string[]) => void;
+// }
 
 // This tells Zod that the form data should be an object with two properties
 const FormSchema = z.object({
@@ -73,11 +75,11 @@ const FormSchema = z.object({
 // This is called destructuring, which allows you to extract values from objects and arrays and assign them to variables.
 export default function ProductFilter({
   filterList,
-  selectedCategory,
-  selectedType,
-  onFilterChange,
+  // selectedCategory,
+  // selectedType,
+  // onFilterChange,
   // : ProductFilterProps tells typescript that the props received by this component must follow the struture describe by the ProductFilterProps interface.
-}: ProductFilterProps) {
+}: FilterProps) {
   //! This is te central part of the form.
   //! Useform is a small manager that keeps tract of the user's selections.
   //! It has three main responsibilities, such as keep the currently selected values, check the values when the user submits, and help handle the form submission.
@@ -100,20 +102,22 @@ export default function ProductFilter({
     //* 1. DefaultValues gives the form its starting values.
     defaultValues: {
       // categories and types are arrays of strings that represent the currently selected categories and types in the filter.
-      categories: selectedCategory,
-      // types are arrays of strings that represent the currently selected types in the filter.
-      types: selectedType,
+      // categories: selectedCategory,
+      // // types are arrays of strings that represent the currently selected types in the filter.
+      // types: selectedType,
+      categories: [],
+      types: [],
     },
   });
 
   // This funtion is called when the user submits the filter form.
   function onSubmit(data: z.infer<typeof FormSchema>) {
-    // console.log("Submit data .... ", data);
+    console.log("Submit data .... ", data);
     // This is where your child component sends the selected values back to the parent.
     // It passes two arguments: categories and types.
     // Its get the data from this function, "onFilterChange: (category: string[], type: string[]) => void;",
     // the parent provided it and now the child calls it.
-    onFilterChange(data.categories, data.types);
+    // onFilterChange(data.categories, data.types);
   }
 
   return (

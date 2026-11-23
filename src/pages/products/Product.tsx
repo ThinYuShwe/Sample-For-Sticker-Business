@@ -1,7 +1,7 @@
 import { products, filterList } from "@/data/products";
 import ProductCard from "@/components/products/ProductCard";
 import ProductFilter from "@/components/products/ProductFilter";
-import Pagination from "@/components/products/Pagination";
+import PaginationBottom from "@/components/products/Pagination";
 function Product() {
   return (
     <div className="container mx-auto">
@@ -16,7 +16,7 @@ function Product() {
               <ProductCard key={product.id} product={product} />
             ))}
           </div>
-          <Pagination />
+          <PaginationBottom />
         </section>
       </section>
     </div>

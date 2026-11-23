@@ -6,6 +6,21 @@ import p5 from "@/data/images/p-5.webp";
 import p6 from "@/data/images/p-6.webp";
 import type { Product } from "@/types";
 
+export const filterList = {
+  types: [
+    { id: "uuid1", label: "seating" },
+    { id: "uuid2", label: "lying" },
+    { id: "uuid3", label: "entertainment" },
+    { id: "uuid4", label: "tables" },
+    { id: "uuid5", label: "storage" },
+  ],
+  categories: [
+    { id: "uuid1", label: "Wooden" },
+    { id: "uuid2", label: "Bamboo" },
+    { id: "uuid3", label: "Metal" },
+  ],
+};
+
 export const products: Product[] = [
   {
     id: "uuid1",
